@@ -53,7 +53,9 @@ def download_file(url: str, output_path: str | None = None) -> None:
     print('downloading', url)
     if output_path is None:
         output_path = os.path.basename(url)
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    dirname = os.path.dirname(output_path)
+    if dirname != '':
+        os.makedirs(dirname, exist_ok=True)
     subprocess.call(['curl', url, '--output', output_path])
 
 
